@@ -1,0 +1,32 @@
+<%- include('../includes/header.ejs')%>
+</head>
+<body>
+  <%- include('../includes/navbar.ejs') %>
+  <div class="container-md">
+    <div class="row mt-3">
+            <% if (products.length > 0) { %>
+            <ul class="list-group">
+                <% products.forEach((product) => { %>
+                <li class="list-group-item d-flex align-items-center justify-content-between">
+                    <h5 class="">
+                        <%= product.title %>
+                        <small>(數量: <%= product.cartItem.quantity %>)</small>
+                      </h5>
+                      <form action="/cart-delete-item" method="POST">
+                        <input type="hidden" value="<%= product.id %>" name="productId">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                      </form>
+                </li>
+                <% }) %>
+            </ul>
+            <hr class="my-5">
+            <div class="text-center">
+								訂購(總額: <%= amount %>)
+            </div>
+          <% } else { %>
+            <h1>購物車尚無商品</h1>
+        </div>
+    </div>
+    <% } %>
+  <%- include('../includes/footer.ejs') %> 

@@ -1,0 +1,57 @@
+<%- include('../includes/header.ejs')%>
+
+    </head>
+
+    <body>
+        <%- include('../includes/navbar.ejs') %>
+            <div class="container-md pt-3">
+                <div class="row justify-content-center">
+
+                    <div class="col-8 text-center">
+                        <h1>Signup</h1>
+                    </div>
+
+                    <div class="col-8">
+                        <form class="row g-3 needs-validation justify-content-center" action="/signup" method="POST"
+                            novalidate>
+                            <% if (errorMessage ) { %>
+                                <div class="col-8">
+                                    <div class="alert alert-danger" role="alert">
+                                        <%= errorMessage %>
+                                    </div>
+                                </div>
+                                <% } %>
+                                    <div>
+                                        <label for="displayName" class="form-label">Display Name</label>
+                                        <input type="text" class="form-control" id="displayName"
+                                            placeholder="Display Name" name="displayName" maxlength="20" required value="admin">
+                                        <div class="invalid-feedback">
+                                            顯示名稱最長不得超過 20 字元。
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" placeholder="example@com"
+                                            name="email" required value="admin@skoob.com">
+                                        <div class="invalid-feedback">
+                                            請輸入合法的電子郵件地址。
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label for="password" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="password" placeholder="password"
+                                            name="password" minlength="8" maxlength="12" required value="11111111">
+                                        <div class="invalid-feedback">
+                                            請輸入 8 ~ 12 位數的密碼。
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <button class="btn btn-primary" type="submit">Signup</button>
+
+                        </form>
+                    </div>
+
+                </div>
+                <%- include('../includes/footer.ejs') %>

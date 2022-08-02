@@ -1,0 +1,35 @@
+<%- include('./includes/header') %>
+</head>
+<body>
+    <%- include('./includes/navbar') %>
+
+    <div class="container-md">
+        <h1><%= pageTitle %></h1>
+        <div class="row">
+            <% if (products.length > 0) { %>
+                <% products.forEach((product) => { %>
+                    <div class="col-12 col-md-6 col-lg-4 g-3">
+                        <div class="card h-100">
+                            <img src="<%= product.imageUrl %>" class="card-img-top" alt="<%= product.title %>">
+                            <div class="card-body">
+                              <h5 class="card-title"><%= product.title %></h5>
+                              <p class="card-text"><%= product.description %></p>
+                              
+
+                              <form action="/cart-add-item" method="POST">
+                                <input type="hidden" name="productId" value="<%= product.id %>">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <button type="submit" class="btn btn-primary">加到購物車</button>
+                            </form>
+                            </div>
+                          </div>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <h1>尚無商品</h1>
+            <% } %>
+        </div>
+
+    </div>
+
+    <%- include('./includes/footer') %>

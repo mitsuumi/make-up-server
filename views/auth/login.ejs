@@ -1,0 +1,38 @@
+<%- include('../includes/header') %>
+</head>
+<body>
+    <%- include('../includes/navbar') %>
+    <div class="container-md mt-3">
+        <div class="row justify-content-center">
+            <div class="col-8 text-center">
+                <h1>Login SKOOB</h1>
+            </div>
+            <% if (errorMessage) { %>
+              <div class="col-8">
+                <div class="alert alert-danger" role="alert">
+                  <%= errorMessage %>
+                </div>
+              </div>
+            <% } %>
+            <div class="col-8">
+                <form class="row g-3 needs-validation" action="/login" method="POST">
+                    <div>
+                      <label for="email" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="email" name="email">
+                    </div>
+
+                    <div>
+                      <label for="password" class="form-label">Password</label>
+                      <input type="password" class="form-control" id="password" name="password">
+                    </div>
+
+                    <div>
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                      <button class="btn btn-primary" type="submit">Login</button>
+                    </div>
+                  </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../includes/footer') %>
